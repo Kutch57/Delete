@@ -1,18 +1,17 @@
 CC=gcc
 CFLAGS=-Wall -Werror -Wextra -pedantic
 
-simple_shell: main.o shell.o builtins.o
-	$(CC) $(CFLAGS) main.o shell.o builtins.o -o simple_shell
+SRC = main.c shell.c builtins.c getline_custom.c split_commands.c \
+      free_commands.c execute.c shell_cd.c alias.c split_line.c \
+      get_exit_status.c get_pid.c
+OBJ = $(SRC:.c=.o)
 
-main.o: main.c shell.h
-	$(CC) $(CFLAGS) -c main.c
+all: $(OBJ)
+	$(CC) $(CFLAGS) -o shell $(OBJ)
 
-shell.o: shell.c shell.h
-	$(CC) $(CFLAGS) -c shell.c
-
-builtins.o: builtins.c shell.h
-	$(CC) $(CFLAGS) -c builtins.c
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f *.o simple_shell
+	rm -f $(OBJ) shell
 
