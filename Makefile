@@ -2,7 +2,7 @@ CC=gcc
 CFLAGS=-Wall -Werror -Wextra -pedantic
 
 SRC = main.c shell.c builtins.c getline_custom.c split_commands.c \
-      free_commands.c execute.c shell_cd.c alias.c split_line.c \
+      execute.c shell_cd.c alias.c split_line.c \
       get_exit_status.c get_pid.c
 OBJ = $(SRC:.c=.o)
 
